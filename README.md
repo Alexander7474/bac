@@ -8,3 +8,4 @@ https://www.methodemaths.fr/les_congruences/
 https://fr.wikipedia.org/wiki/Logarithme_discret
 https://stackoverflow.com/questions/227459/how-to-get-the-ascii-value-of-a-character
 https://fr.wikipedia.org/wiki/Cryptographie
+https://fr.wikipedia.org/wiki/Décomposition_en_produit_de_facteurs_premiers
