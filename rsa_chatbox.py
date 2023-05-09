@@ -1,6 +1,7 @@
 import socket
 import rsa_maker
 import os
+import threading
 
 SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 BUFFER = 4096
@@ -51,14 +52,17 @@ def main():
         #the secure chat can now start with crypted message
 
         #sending server nickname
-        print('Sending nickname to client...')
+        print('Sending the server nickname...')
         client.send(rsa_maker.encrypt(nickname,Client_N,Client_e).encode())
         #getting the client nickname
         print('Getting the client nickname...')
         ClientNick = rsa_maker.decrypt(client.recv(BUFFER).decode(),N,d)
         clearPrompt()
 
-        print(ClientNick)        
+        print("Communication start with " + ClientNick)        
+
+        threading.Thread(target=recvMessage,args=(ClientNick,client,N,d,)).start()
+        threading.Thread(target=sendMessage,args=(client,Client_N,Client_e,)).start()
         
     elif response == 2:
         host = input('Give the connection HOST: ')
@@ -89,10 +93,42 @@ def main():
         SOCKET.send(rsa_maker.encrypt(nickname,Server_N,Server_e).encode())
         clearPrompt()
 
-        print(ServerNick)
+        print("Communication start with " + ServerNick)
+
+        threading.Thread(target=recvMessage,args=(ServerNick,SOCKET,N,d,)).start()
+        threading.Thread(target=sendMessage,args=(SOCKET,Server_N,Server_e,)).start()
+
+def recvMessage(servNick,servM,NEncrypt,dEncrypt):
+    while True:
+        try:
+            msg = rsa_maker.decrypt(servM.recv(BUFFER).decode(),NEncrypt,dEncrypt)
+            print("#> " +servNick+ ": " +msg)
+        except:
+            print('Error in message reception !')
+            break
+
+def sendMessage(ClientM,NDecrypt,eDecrypt):
+    while True:
+        try:
+            msgToSend = input('')
+            ClientM.send(rsa_maker.encrypt(msgToSend,NDecrypt,eDecrypt).encode())
+        except:
+            print('Error when sending a message !')
+            break
 
 def clearPrompt():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+def loadAnim(prompt):
+    state = [" \ ", " - ", " / ", " | "]
+    x = 0
+    while True:
+        global stop_anim
+        clearPrompt()
+        if stop_anim:
+            break
+        print(prompt + state[x])
+        x+=1
 
 if __name__ == '__main__':
     main()
