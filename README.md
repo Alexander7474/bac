@@ -10,4 +10,16 @@ avancement sur le grand oral
 --> https://fr.wikipedia.org/wiki/Cryptographie <br>
 --> https://fr.wikipedia.org/wiki/Décomposition_en_produit_de_facteurs_premiers <br>
 --> https://fr.wikipedia.org/wiki/%C3%89change_de_cl%C3%A9s_Diffie-Hellman <br>
---> https://python.doctor/page-tkinter-interface-graphique-python-tutoriel
+--> https://python.doctor/page-tkinter-interface-graphique-python-tutoriel <br>
+--> https://fr.wikipedia.org/wiki/Digital_Signature_Algorithm <br>
+--> https://fr.wikipedia.org/wiki/Algorithme_LLL <br>
+
+# pemière partie
+
+<h2>Algorithme symétrique</h2>
+<p>Définition et explication</p>
+<h3>échange de clée diffie Hellman</h3>
+<p>definition et exp</p>
+<h3>Un algo symétrique</h3>
+<h2>asymetrqiue</h2>
+

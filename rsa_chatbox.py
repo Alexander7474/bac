@@ -22,7 +22,7 @@ def main():
     clearPrompt()
 
     if response == 1:
-        SOCKET.bind(("127.0.0.1", 6666))
+        SOCKET.bind(("0.0.0.0", 6666))
         SOCKET.listen()
 
         #waiting for the client connection 
@@ -59,10 +59,11 @@ def main():
         ClientNick = rsa_maker.decrypt(client.recv(BUFFER).decode(),N,d)
         clearPrompt()
 
-        print("Communication start with " + ClientNick)        
+        print("Communication start with " + ClientNick)
 
-        threading.Thread(target=recvMessage,args=(ClientNick,client,N,d,)).start()
-        threading.Thread(target=sendMessage,args=(client,Client_N,Client_e,)).start()
+        recvThread = threading.Thread(target=recvMessage,args=(ClientNick,client,N,d,Client_N,Client_e,))
+        recvThread.start()
+        sendMessage(client,Client_N,Client_e,N,d)
         
     elif response == 2:
         host = input('Give the connection HOST: ')
@@ -95,24 +96,34 @@ def main():
 
         print("Communication start with " + ServerNick)
 
-        threading.Thread(target=recvMessage,args=(ServerNick,SOCKET,N,d,)).start()
-        threading.Thread(target=sendMessage,args=(SOCKET,Server_N,Server_e,)).start()
+        recvThread = threading.Thread(target=recvMessage,args=(ServerNick,SOCKET,N,d,Server_N,Server_e,))
+        recvThread.start()
+        sendMessage(SOCKET,Server_N,Server_e,N,d)
 
-def recvMessage(servNick,servM,NEncrypt,dEncrypt):
+def recvMessage(servNick,servM,NDecrypt,dDecrypt,NUnsign,eUnsign):
     while True:
         try:
-            msg = rsa_maker.decrypt(servM.recv(BUFFER).decode(),NEncrypt,dEncrypt)
-            print("#> " +servNick+ ": " +msg)
-        except:
+            fullTrame = servM.recv(BUFFER).decode()
+            fullTrame = fullTrame.split(";;;")
+            DecryptedSign = rsa_maker.decrypt(fullTrame[1],NUnsign,eUnsign)
+            if DecryptedSign == fullTrame[0]:
+                decryptedMessage = rsa_maker.decrypt(fullTrame[0],NDecrypt,dDecrypt)
+                print("#> " +servNick+ ": " +decryptedMessage)
+            else:
+                print('Unsigned message from wrong origin')
+        except Exception:
             print('Error in message reception !')
             break
 
-def sendMessage(ClientM,NDecrypt,eDecrypt):
+def sendMessage(ClientM,NEncrypt,eEncrypt,NSign,dSign):
     while True:
         try:
             msgToSend = input('')
-            ClientM.send(rsa_maker.encrypt(msgToSend,NDecrypt,eDecrypt).encode())
-        except:
+            EncryptedMsg = rsa_maker.encrypt(msgToSend,NEncrypt,eEncrypt)
+            signature = rsa_maker.encrypt(EncryptedMsg,NSign,dSign)
+            trame = EncryptedMsg+";;;"+signature
+            ClientM.send(trame.encode())
+        except Exception:
             print('Error when sending a message !')
             break
 

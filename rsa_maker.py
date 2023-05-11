@@ -118,27 +118,32 @@ def makeModule(t: int):
         
     return (N,e,d)
 
-def encrypt(M,N,e):
-    ASCIIencodedMessage = []
-    for letters in M:
-        ASCIIencodedMessage.append(ord(letters))
+def StrToASCIIBoard(strValue):
+    ASCIIBoard = []
+    for letters in strValue:
+        ASCIIBoard.append(ord(letters))
+    return ASCIIBoard
+
+def ASCIIBoardToStr(ASCIIBoard):
+    strValue = ''
+    for x in ASCIIBoard:
+        strValue += chr(x)
+    return strValue
+
+def RSA_func(mess,b,c):
+    ASCIIencodedMessage = StrToASCIIBoard(mess)
     for x in range(len(ASCIIencodedMessage)):
-        ASCIIencodedMessage[x] = (ASCIIencodedMessage[x]**e)%N
-    encryptedM = ''
-    for x in ASCIIencodedMessage:
-        encryptedM += chr(x)
-    return encryptedM
+        ASCIIencodedMessage[x] = (ASCIIencodedMessage[x]**c)%b
+    return ASCIIBoardToStr(ASCIIencodedMessage)
+
+def signature(C,N,d):
+    return RSA_func(C,N,d)
+
+def encrypt(M,N,e):
+    return RSA_func(M,N,e)
 
 def decrypt(C,N,d):
-    ASCIIencodedMessage = []
-    for letters in C:
-        ASCIIencodedMessage.append(ord(letters))
-    for x in range(len(ASCIIencodedMessage)):
-        ASCIIencodedMessage[x] = (ASCIIencodedMessage[x]**d)%N
-    decryptedM = ''
-    for x in ASCIIencodedMessage:
-        decryptedM += chr(x)
-    return decryptedM
+    return RSA_func(C,N,d)
 
 if __name__ == '__main__':
     main()
