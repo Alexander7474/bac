@@ -34,8 +34,12 @@ l'invention de méthode de chiffrement de plus en plus sécurisé en passant par
 <p>Un algorithme de chiffrement symétrisue utilise la même clé pour chiffrer et déchiffrer un message, il doit être utilisé en parallèle d'algorithme d'échange de clés comme celui de diffie hellman pour garantir la non divulgation
 de la clé de chiffrement/déchiffrement</p>
 <h3>échange de clée diffie Hellman</h3>
-<p>definition et exp</p>
-<h3>Un algo symétrique</h3>
+<p>L'échange de clé diffi hellman permet à deux tiers d'échanger une clé de chiffrement unique de manière sécurisé. Il repose sur le problème du logarithme discret. Considérons Alice et Bob, deux tiers voulant séchanger une clé.
+Pour cela, les deux se mettent d'accord sur p un nombre premier alétoire et g un nombre aléatoire inférieur à p. Avec ces deux nombres, Alice peut calculer A = g^a (mod p) et Bob B = g^b (mod p), puis avec les deux tiers peuvent 
+s'échanger les valeur pour calculer B^a (mod p) = g^ab (mod p) et A^b (mod p) = g^ab (mod p). Avec cette méthode, Alice et Bob on pus échanger la valeurs g^ab (mod p) de manières sécurisé car un individu possedant 
+p,g,g^b (mod p) et g^a (mod p) (donc aillant intercpté l'achange) ne peut pas déduire a et b.</p>
+<h3>Chiffrement AES</h3>
+<p>AES est un algorithme basé sur les portes logique XOR, pas intérréssant car pas très maths</p>
 <h2>Algorithme asymetrqiue</h2>
 <p>Un algorithme asymétrique est un algoithme utilisant deux clés, une pour déchiffrer et une pour chiffrer. Il sont en théorie plus sécurisé que les algorithmes symétrique car la clé de chiffrement ou de déchiffrement n'est 
 jamais rendue publique</p>
