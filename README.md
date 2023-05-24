@@ -1,7 +1,7 @@
 # bac
 avancement sur le grand oral
 
-#MATHS
+# MATHS
 
 # Data used
 --> https://fr.wikipedia.org/wiki/Inverse_modulaire <br>
@@ -17,7 +17,7 @@ avancement sur le grand oral
 --> https://fr.wikipedia.org/wiki/Algorithme_LLL <br>
 --> https://crypto.stackexchange.com/questions/101439/how-is-diffie-hellman-linked-to-aes <br>
 
-#Problématiques
+# Problématiques
 
 comment sécurisé des transferts de données ?<br>
 comment sont sécurisé les données sur internet ?<br>
@@ -25,11 +25,11 @@ pourquoi la sécurité du web n'est pas infaillible ?<br>
 Les protocoles de sécurité du web peuvent-ils être mis à mal ?<br>
 Comment les mathématiques permettent de sécurisé les transfert de données ?<br>
 
-#Intro
+# Intro
 
 <h4>Depuis le début de son existence l'Homme à toujours cherché a communiquer des informations de manière privée et lisible uniquement par le destinataire. C'est cette volonté qui à entrainé au file du temps l'invention de méthode de chiffrement de plus en plus sécurisé en passant par des algorithme simple comme le code césar jusqu'au chiffrement RSA.</h4>
 
-#Partie
+# Partie
 
 <h2>Algorithme symétrique</h2>
 <p>Un algorithme de chiffrement symétrisue utilise la même clé pour chiffrer et déchiffrer des données, on peut citer l'algorithme AES, DES ou bien encore tripleDES. Un algorithme symétrique doit être utilisé en parallèle d'algorithme d'échange de clés comme celui de diffie hellman pour garantir la non divulgation de la clé de chiffrement/déchiffrement</p>
@@ -44,16 +44,16 @@ Comment les mathématiques permettent de sécurisé les transfert de données ?<
 <h3>Signature RSA</h3>
 <p>Le RSA ne permet aussi de faire des signatures pour approuver des données. En effet dans une communication entre deux tiers, chacun peut signer ces message avec sa clé privé d et les destinataires peuvent vérifier cette signatuer avec la clé publique e. Exemple: Bob et Alice s'échangent des messages, chacun connait la clé publique de l'autre mais ils ne sont pas sur de la provenance de leur message. Chacun peut envoyer à chaque message le chiffrement de c avec sa clé privé,puis lors de la réception des messages, déchiffre c avec sa clé privé et c chiffré avec la clé publique de l'envoyeur, si c chiffré vaut c, alors la signature est vérifié. </p>
 
-#NSI
+# NSI
 
-#Data used
+# Data used
 
-#Problématiques
+# Problématiques
 
 -->Comment les EDR vont révolutionner la défense des systèmes informatiques <br>
 -->Pourquoi les antivirus sont obsolètes <br>
 -->
 
-#Intro
+# Intro
 
-#Partie
+# Partie
