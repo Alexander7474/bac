@@ -52,7 +52,7 @@ Comment les mathématiques permettent de sécurisé les transfert de données ?<
 
 -->Comment les EDR vont révolutionner la défense des systèmes informatiques <br>
 -->Pourquoi les antivirus sont obsolètes <br>
--->
+-->Quelles sont les nouvelles méthodes de défense des système informatiques en entreprise
 
 # Intro
 
